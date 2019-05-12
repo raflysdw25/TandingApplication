@@ -18,6 +18,7 @@ public class Tanding {
         // TODO code application logic here
         System.out.println("Uji Coba Push");
         System.out.println("Uji coba commit by Firmansyah");
+        System.out.println("Uji Coba Commit by Rafly");
     }
     
 }
