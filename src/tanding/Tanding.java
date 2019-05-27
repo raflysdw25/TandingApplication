@@ -5,7 +5,9 @@
  */
 package tanding;
 
-import com.oop2.DatabaseUtilities;
+
+
+import com.tanding.DatabaseTanding;
 import java.sql.Connection;
 
 /**
@@ -25,7 +27,7 @@ public class Tanding {
         System.out.println("Uji Coba Commit by Rafly");
         System.out.println("Uji Coba Commit dari Yoel");
         System.out.println("Rama");
-        conn = DatabaseUtilities.getConnection();
+        conn = DatabaseTanding.getConnection();
     }
     
 }
