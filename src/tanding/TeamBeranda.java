@@ -27,18 +27,112 @@ public class TeamBeranda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pnl_teamProfile = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        dst_teamPhoto = new javax.swing.JDesktopPane();
+        imageLabel = new javax.swing.JLabel();
+        label_teamName = new javax.swing.JLabel();
+        label_teamPhone = new javax.swing.JLabel();
+        label_teamDomisili = new javax.swing.JLabel();
+        pnl_teamSearch = new javax.swing.JPanel();
+        txt_teamSearch = new javax.swing.JTextField();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        pnl_teamProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setText("TEAM PROFILE");
+
+        dst_teamPhoto.setLayer(imageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout dst_teamPhotoLayout = new javax.swing.GroupLayout(dst_teamPhoto);
+        dst_teamPhoto.setLayout(dst_teamPhotoLayout);
+        dst_teamPhotoLayout.setHorizontalGroup(
+            dst_teamPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dst_teamPhotoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        dst_teamPhotoLayout.setVerticalGroup(
+            dst_teamPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dst_teamPhotoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        label_teamName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        label_teamName.setText("Team Name");
+
+        label_teamPhone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        label_teamPhone.setText("Contact Number");
+
+        label_teamDomisili.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        label_teamDomisili.setText("Domisili");
+
+        javax.swing.GroupLayout pnl_teamProfileLayout = new javax.swing.GroupLayout(pnl_teamProfile);
+        pnl_teamProfile.setLayout(pnl_teamProfileLayout);
+        pnl_teamProfileLayout.setHorizontalGroup(
+            pnl_teamProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_teamProfileLayout.createSequentialGroup()
+                .addGroup(pnl_teamProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_teamProfileLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(pnl_teamProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_teamName, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_teamPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_teamDomisili, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dst_teamPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnl_teamProfileLayout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabel1)))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        pnl_teamProfileLayout.setVerticalGroup(
+            pnl_teamProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_teamProfileLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dst_teamPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(label_teamName)
+                .addGap(18, 18, 18)
+                .addComponent(label_teamPhone)
+                .addGap(18, 18, 18)
+                .addComponent(label_teamDomisili)
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pnl_teamProfile);
+        pnl_teamProfile.setBounds(10, 11, 280, 388);
+
+        pnl_teamSearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
+        txt_teamSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout pnl_teamSearchLayout = new javax.swing.GroupLayout(pnl_teamSearch);
+        pnl_teamSearch.setLayout(pnl_teamSearchLayout);
+        pnl_teamSearchLayout.setHorizontalGroup(
+            pnl_teamSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_teamSearchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_teamSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnl_teamSearchLayout.setVerticalGroup(
+            pnl_teamSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_teamSearchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txt_teamSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(330, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(pnl_teamSearch);
+        pnl_teamSearch.setBounds(311, 11, 460, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -79,5 +173,14 @@ public class TeamBeranda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane dst_teamPhoto;
+    private javax.swing.JLabel imageLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel label_teamDomisili;
+    private javax.swing.JLabel label_teamName;
+    private javax.swing.JLabel label_teamPhone;
+    private javax.swing.JPanel pnl_teamProfile;
+    private javax.swing.JPanel pnl_teamSearch;
+    private javax.swing.JTextField txt_teamSearch;
     // End of variables declaration//GEN-END:variables
 }
