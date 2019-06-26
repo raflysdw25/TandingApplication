@@ -27,6 +27,7 @@ public class Tanding {
         System.out.println("Uji Coba Commit by Rafly");
         System.out.println("Uji Coba Commit dari Yoel");
         System.out.println("Rama");
+        //Change Database
         conn = DatabaseTanding.getConnection();
     }
     
