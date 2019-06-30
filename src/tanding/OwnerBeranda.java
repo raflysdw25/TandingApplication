@@ -14,8 +14,13 @@ public class OwnerBeranda extends javax.swing.JFrame {
     /**
      * Creates new form OwnerBeranda
      */
+    String id_owner;
     public OwnerBeranda() {
         initComponents();
+    }
+    public OwnerBeranda(String id){
+        initComponents();
+        id_owner = id;
     }
 
     /**

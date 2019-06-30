@@ -96,6 +96,7 @@ public class BerandaLogin extends javax.swing.JPanel {
     private void btn_LoginAsTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginAsTeamActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_LoginAsTeamActionPerformed
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

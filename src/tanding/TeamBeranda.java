@@ -14,8 +14,13 @@ public class TeamBeranda extends javax.swing.JFrame {
     /**
      * Creates new form TeamBeranda
      */
+    String id_team;
     public TeamBeranda() {
         initComponents();
+    }
+    public TeamBeranda(String id){
+        initComponents();
+        id_team = id;
     }
 
     /**
