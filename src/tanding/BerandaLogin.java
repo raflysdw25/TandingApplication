@@ -91,12 +91,12 @@ public class BerandaLogin extends javax.swing.JPanel {
 
     private void btn_LoginAsOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginAsOwnerActionPerformed
         // TODO add your handling code here:
-        new LoginOwner().setVisible(true);
+        new LoginOwnerNew().setVisible(true);
     }//GEN-LAST:event_btn_LoginAsOwnerActionPerformed
 
     private void btn_LoginAsTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginAsTeamActionPerformed
         // TODO add your handling code here:
-        new LoginTeam().setVisible(true);
+        new LoginTeamNew().setVisible(true);
     }//GEN-LAST:event_btn_LoginAsTeamActionPerformed
     
 

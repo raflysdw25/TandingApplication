@@ -22,13 +22,7 @@ public class Tanding {
     private static Connection conn =null;
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Uji Coba Push");
-        System.out.println("Uji coba commit by Firmansyah");
-        System.out.println("Uji Coba Commit by Rafly");
-        System.out.println("Uji Coba Commit dari Yoel");
-        System.out.println("Rama");
-        //Change Database
-//        conn = DatabaseTanding.getConnection();
+        new BerandaLogin().setVisible(true);
     }
     
 }

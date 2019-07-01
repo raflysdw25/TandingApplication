@@ -234,7 +234,7 @@ public class OwnerRegist extends javax.swing.JFrame {
     private void btn_OwnerRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OwnerRegisterActionPerformed
         // TODO add your handling code here:
         try{
-        String sql = "INSERT INTO field owner ('fieldname','username','password','contact','address','facilities','photo') VALUES (?, ?, ?, ?, ?, ?, ?);" ;
+        String sql = "INSERT INTO fieldowner ('fieldname','username','password','contact','address','facilities','photo') VALUES (?, ?, ?, ?, ?, ?, ?);" ;
         pst = conn.prepareStatement(sql);
         
         pst.setString(1, txt_OwnerFieldName.getText());
