@@ -54,7 +54,7 @@ public class LoginOwner extends javax.swing.JPanel {
         jLabel4.setText("Password");
 
         btn_SignInOwner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_SignInOwner.setText("Sign In");
+        btn_SignInOwner.setText("Log In");
         btn_SignInOwner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_SignInOwnerActionPerformed(evt);
@@ -65,7 +65,7 @@ public class LoginOwner extends javax.swing.JPanel {
         btn_RegisterOwner.setText("Register as Owner");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Sign In as Owner");
+        jLabel2.setText("Log In as Owner");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
