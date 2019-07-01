@@ -133,6 +133,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Register as Team"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_RegisterTeamActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

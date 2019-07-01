@@ -5,6 +5,7 @@
  */
 package tanding;
 
+import connection.DatabaseTanding;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -28,7 +29,7 @@ public class OwnerRegist extends javax.swing.JFrame {
      * Creates new form OwnerRegist
      */
     
-    private Connection conn;
+    private Connection conn = DatabaseTanding.getConnection();
     private java.sql.PreparedStatement pst;
     private ResultSet rs;
     
@@ -233,7 +234,7 @@ public class OwnerRegist extends javax.swing.JFrame {
     private void btn_OwnerRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OwnerRegisterActionPerformed
         // TODO add your handling code here:
         try{
-        String sql = "INSERT INTO `team` ('teamname','username','password','contact','region','description','photo') VALUES (?, ?, ?, ?, ?, ?, ?);" ;
+        String sql = "INSERT INTO team ('teamname','username','password','contact','region','description','photo') VALUES (?, ?, ?, ?, ?, ?, ?);" ;
         pst = conn.prepareStatement(sql);
         
         pst.setString(1, txt_OwnerFieldName.getText());

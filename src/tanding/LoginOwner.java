@@ -6,6 +6,7 @@
 package tanding;
 
 import com.mysql.jdbc.PreparedStatement;
+import connection.DatabaseTanding;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,9 +17,9 @@ import javax.swing.JOptionPane;
  * @author HP
  */
 public class LoginOwner extends javax.swing.JPanel {
-    Connection conn;
-    PreparedStatement prep = null;
-    ResultSet res = null;
+    Connection conn = DatabaseTanding.getConnection();
+    PreparedStatement prep;
+    ResultSet res;
     /**
      * Creates new form LoginOwner
      */
@@ -63,6 +64,11 @@ public class LoginOwner extends javax.swing.JPanel {
 
         btn_RegisterOwner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_RegisterOwner.setText("Register as Owner");
+        btn_RegisterOwner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegisterOwnerActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Sign In as Owner");
@@ -120,13 +126,14 @@ public class LoginOwner extends javax.swing.JPanel {
 
     private void btn_SignInOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignInOwnerActionPerformed
         try {
-            String sql = "select from owner where username=? and password=?";
+            String sql = "select * from fieldowner where username=? and password=?";
             prep = (PreparedStatement) conn.prepareStatement(sql);
             prep.setString(1,txt_OwnerUserName.getText());
             prep.setString(2, pwd_Owner.getText());
             res = prep.executeQuery();
             if (res.next()) {
-                OwnerBeranda owner = new OwnerBeranda();
+                String id_owner = res.getString("id_field");
+                OwnerBeranda owner = new OwnerBeranda(id_owner);
                 owner.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Username dan Password Salah");
@@ -137,6 +144,11 @@ public class LoginOwner extends javax.swing.JPanel {
             
        // TODO add your handling code here:
     }//GEN-LAST:event_btn_SignInOwnerActionPerformed
+
+    private void btn_RegisterOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegisterOwnerActionPerformed
+        // TODO add your handling code here:
+        new OwnerRegist().setVisible(true);
+    }//GEN-LAST:event_btn_RegisterOwnerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
