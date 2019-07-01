@@ -5,6 +5,19 @@
  */
 package tanding;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import net.coobird.thumbnailator.Thumbnails;
+
 /**
  *
  * @author A442U
@@ -14,6 +27,11 @@ public class OwnerRegist extends javax.swing.JFrame {
     /**
      * Creates new form OwnerRegist
      */
+    
+    private Connection conn;
+    private java.sql.PreparedStatement pst;
+    private ResultSet rs;
+    
     public OwnerRegist() {
         initComponents();
     }
@@ -75,6 +93,11 @@ public class OwnerRegist extends javax.swing.JFrame {
         jLabel7.setText("Photo");
 
         btn_OwnerPhotoBrowse.setText("Browse...");
+        btn_OwnerPhotoBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_OwnerPhotoBrowseActionPerformed(evt);
+            }
+        });
 
         fieldImageLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
@@ -98,6 +121,11 @@ public class OwnerRegist extends javax.swing.JFrame {
         );
 
         btn_OwnerRegister.setText("REGISTER!");
+        btn_OwnerRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_OwnerRegisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -202,6 +230,51 @@ public class OwnerRegist extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_OwnerRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OwnerRegisterActionPerformed
+        // TODO add your handling code here:
+        try{
+        String sql = "INSERT INTO `team` ('teamname','username','password','contact','region','description','photo') VALUES (?, ?, ?, ?, ?, ?, ?);" ;
+        pst = conn.prepareStatement(sql);
+        
+        pst.setString(1, txt_OwnerFieldName.getText());
+        pst.setString(2, txt_OwnerUsername.getText());
+        pst.setString(3, txt_OwnerPassword.getText());
+        pst.setString(4, txt_OwnerContactNo.getText());
+        pst.setString(5, txt_OwnerAddress.getText());
+        pst.setString(6, txt_OwnerFacilities.getText());
+        pst.setBytes(7, ownerFieldImage);
+        }
+        catch(Exception e){
+        
+        }
+    }//GEN-LAST:event_btn_OwnerRegisterActionPerformed
+
+    private void btn_OwnerPhotoBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OwnerPhotoBrowseActionPerformed
+        // TODO add your handling code here:
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        filename=f.getAbsolutePath();
+        try{
+            File image = new File(filename);
+            BufferedImage thumbnails = Thumbnails.of(image).size(220, 230).asBufferedImage();
+            ByteArrayOutputStream os = new ByteArrayOutputStream();
+            ImageIO.write(thumbnails, "jpeg", os);
+            InputStream is = new ByteArrayInputStream(os.toByteArray());
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for(int readnum; (readnum = is.read(buf)) !=-1;){
+                bos.write(buf, 0, readnum);
+            }
+            viewimage = new ImageIcon(thumbnails);
+            fieldImageLabel.setIcon(viewimage);
+            ownerFieldImage = bos.toByteArray();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btn_OwnerPhotoBrowseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,6 +300,12 @@ public class OwnerRegist extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(OwnerRegist.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -259,4 +338,7 @@ public class OwnerRegist extends javax.swing.JFrame {
     private javax.swing.JTextField txt_OwnerPassword;
     private javax.swing.JTextField txt_OwnerUsername;
     // End of variables declaration//GEN-END:variables
+    String filename = null;
+    private ImageIcon viewimage = null;
+    byte[] ownerFieldImage = null;
 }

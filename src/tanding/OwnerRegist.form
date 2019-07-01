@@ -241,6 +241,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Browse..."/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_OwnerPhotoBrowseActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JDesktopPane" name="dst_OwnerFieldPhoto">
 
@@ -282,6 +285,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="REGISTER!"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_OwnerRegisterActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
