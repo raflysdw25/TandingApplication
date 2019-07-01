@@ -7,7 +7,7 @@ package tanding;
 
 
 
-import com.tanding.DatabaseTanding;
+//import com.tanding.DatabaseTanding;
 import java.sql.Connection;
 
 /**
@@ -28,7 +28,7 @@ public class Tanding {
         System.out.println("Uji Coba Commit dari Yoel");
         System.out.println("Rama");
         //Change Database
-        conn = DatabaseTanding.getConnection();
+//        conn = DatabaseTanding.getConnection();
     }
     
 }
