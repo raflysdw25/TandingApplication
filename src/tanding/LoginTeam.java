@@ -120,7 +120,7 @@ public class LoginTeam extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_SignInTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignInTeamActionPerformed
-               try {
+      try {
             String sql = "select from team where username=? and password=?";
             prep = (PreparedStatement) conn.prepareStatement(sql);
             prep.setString(1,txt_TeamUserName.getText());
@@ -134,7 +134,7 @@ public class LoginTeam extends javax.swing.JPanel {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-        } // TODO add your handling code here:
+        }   // TODO add your handling code here:
     }//GEN-LAST:event_btn_SignInTeamActionPerformed
 
 
