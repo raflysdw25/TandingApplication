@@ -5,12 +5,20 @@
  */
 package tanding;
 
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
  */
 public class LoginTeam extends javax.swing.JPanel {
-
+    Connection conn;
+    PreparedStatement prep = null;
+    ResultSet res = null;
     /**
      * Creates new form LoginOwner
      */
@@ -50,6 +58,11 @@ public class LoginTeam extends javax.swing.JPanel {
 
         btn_SignInTeam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_SignInTeam.setText("Sign In");
+        btn_SignInTeam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SignInTeamActionPerformed(evt);
+            }
+        });
 
         btn_RegisterTeam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_RegisterTeam.setText("Register as Team");
@@ -105,6 +118,24 @@ public class LoginTeam extends javax.swing.JPanel {
                 .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_SignInTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignInTeamActionPerformed
+               try {
+            String sql = "select from team where username=? and password=?";
+            prep = (PreparedStatement) conn.prepareStatement(sql);
+            prep.setString(1,txt_TeamUserName.getText());
+            prep.setString(2, pwd_Team.getText());
+            res = prep.executeQuery();
+            if (res.next()) {
+                TeamBeranda team = new TeamBeranda();
+                team.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Username dan Password Salah");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        } // TODO add your handling code here:
+    }//GEN-LAST:event_btn_SignInTeamActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
