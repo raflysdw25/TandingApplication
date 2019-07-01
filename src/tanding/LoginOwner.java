@@ -5,12 +5,20 @@
  */
 package tanding;
 
+import com.mysql.jdbc.PreparedStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author HP
  */
 public class LoginOwner extends javax.swing.JPanel {
-
+    Connection conn;
+    PreparedStatement prep = null;
+    ResultSet res = null;
     /**
      * Creates new form LoginOwner
      */
@@ -47,6 +55,11 @@ public class LoginOwner extends javax.swing.JPanel {
 
         btn_SignInOwner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_SignInOwner.setText("Sign In");
+        btn_SignInOwner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SignInOwnerActionPerformed(evt);
+            }
+        });
 
         btn_RegisterOwner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_RegisterOwner.setText("Register as Owner");
@@ -104,6 +117,25 @@ public class LoginOwner extends javax.swing.JPanel {
                 .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_SignInOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignInOwnerActionPerformed
+        try {
+            String sql = "select from owner where username=? and password=?";
+            prep = (PreparedStatement) conn.prepareStatement(sql);
+            prep.setString(1,txt_OwnerUserName.getText());
+            prep.setString(2, pwd_Owner.getText());
+            res = prep.executeQuery();
+            if (res.next()) {
+                OwnerBeranda owner = new OwnerBeranda();
+                owner.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Username dan Password Salah");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+       // TODO add your handling code here:
+    }//GEN-LAST:event_btn_SignInOwnerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
