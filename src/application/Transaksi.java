@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tanding;
+package application;
 
 import java.util.Date;
 import java.util.Calendar;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerModel;
 
 /**
  *
@@ -156,11 +157,10 @@ public class Transaksi extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(time_spinner, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txt_fieldName)
-                                        .addComponent(jLabel1)
-                                        .addComponent(txt_teamName)
-                                        .addComponent(list_lapangan, 0, 212, Short.MAX_VALUE))
+                                    .addComponent(txt_fieldName)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txt_teamName)
+                                    .addComponent(list_lapangan, 0, 212, Short.MAX_VALUE)
                                     .addComponent(durasi_spinner))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(36, 36, 36))
@@ -223,7 +223,7 @@ public class Transaksi extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
         );
 
         pack();

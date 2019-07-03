@@ -69,12 +69,10 @@
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="time_spinner" pref="214" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txt_fieldName" max="32767" attributes="0"/>
-                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txt_teamName" max="32767" attributes="0"/>
-                                          <Component id="list_lapangan" alignment="0" pref="212" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="txt_fieldName" max="32767" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txt_teamName" max="32767" attributes="0"/>
+                                      <Component id="list_lapangan" alignment="0" pref="212" max="32767" attributes="0"/>
                                       <Component id="durasi_spinner" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -302,6 +300,9 @@
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner()"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_total">
           <Properties>
