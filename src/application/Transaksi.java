@@ -5,8 +5,13 @@
  */
 package application;
 
+import connection.DatabaseTanding;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
@@ -16,12 +21,26 @@ import javax.swing.SpinnerModel;
  * @author A442U
  */
 public class Transaksi extends javax.swing.JFrame {
-
+    Connection conn;
+    PreparedStatement pst;
+    ResultSet rs;
+    
+    private String idTeam, idField;
+    private String comboValue;
+    private Integer fieldPrice, duration, total, dp;
     /**
      * Creates new form Transaksi
      */
-    public Transaksi() {
+    public Transaksi() {        
         initComponents();
+    }
+    
+    public Transaksi(String id_team,String id_field){
+        initComponents();
+        conn = DatabaseTanding.getConnection();
+        idTeam = id_team;
+        idField = id_field;
+        
     }
 
     /**
@@ -44,8 +63,8 @@ public class Transaksi extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btn_submit = new javax.swing.JButton();
+        btn_cancel = new javax.swing.JButton();
         txt_teamName = new javax.swing.JTextField();
         txt_fieldName = new javax.swing.JTextField();
         list_lapangan = new javax.swing.JComboBox<>();
@@ -56,9 +75,14 @@ public class Transaksi extends javax.swing.JFrame {
         durasi_spinner = new javax.swing.JSpinner();
         txt_total = new javax.swing.JTextField();
         txt_dp = new javax.swing.JTextField();
-        status_label = new javax.swing.JLabel();
+        txt_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Penyewaan");
@@ -90,14 +114,14 @@ public class Transaksi extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Status Pembayaran");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("SUBMIT");
+        btn_submit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_submit.setText("SUBMIT");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("BATAL");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btn_cancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_cancel.setText("BATAL");
+        btn_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btn_cancelActionPerformed(evt);
             }
         });
 
@@ -109,20 +133,35 @@ public class Transaksi extends javax.swing.JFrame {
 
         list_lapangan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         list_lapangan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sintetis", "Aspal", "Plur" }));
+        list_lapangan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                list_lapanganActionPerformed(evt);
+            }
+        });
 
         JSpinner.DateEditor te = new JSpinner.DateEditor(time_spinner,"HH:mm");
         time_spinner.setEditor(te);
         time_spinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         durasi_spinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        durasi_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                durasi_spinnerStateChanged(evt);
+            }
+        });
 
         txt_total.setEditable(false);
         txt_total.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txt_dp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_dp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_dpKeyReleased(evt);
+            }
+        });
 
-        status_label.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        status_label.setText("Belum Lunas");
+        txt_status.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_status.setText("Belum Lunas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,9 +171,9 @@ public class Transaksi extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -150,18 +189,18 @@ public class Transaksi extends javax.swing.JFrame {
                             .addComponent(jLabel10))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(status_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txt_dp)
                             .addComponent(txt_total)
                             .addComponent(tgl_penyewaan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(time_spinner, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                                    .addComponent(time_spinner)
                                     .addComponent(txt_fieldName)
                                     .addComponent(jLabel1)
                                     .addComponent(txt_teamName)
-                                    .addComponent(list_lapangan, 0, 212, Short.MAX_VALUE)
-                                    .addComponent(durasi_spinner))
+                                    .addComponent(list_lapangan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(durasi_spinner)
+                                    .addComponent(txt_status, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(36, 36, 36))
         );
@@ -205,14 +244,14 @@ public class Transaksi extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(txt_dp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(status_label))
-                .addGap(35, 35, 35)
+                    .addComponent(txt_status))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,16 +262,75 @@ public class Transaksi extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        this.setVisible(false);
+        new VisitField().setVisible(true);
+    }//GEN-LAST:event_btn_cancelActionPerformed
 
+    private void durasi_spinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_durasi_spinnerStateChanged
+        // TODO add your handling code here:
+       readTotal();
+    }//GEN-LAST:event_durasi_spinnerStateChanged
+
+    private void list_lapanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_list_lapanganActionPerformed
+        // TODO add your handling code here:
+        readTotal();
+    }//GEN-LAST:event_list_lapanganActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        String sql = "select t.teamname, f.fieldname from transaksi_lapangan tl JOIN team t ON (tl.id_team = t.id_team) JOIN fieldowner f ON (tl.id_owner = f.id_field) where t.id_team=? AND f.id_field = ?";        
+        try {
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, idTeam);
+            pst.setString(2, idField);
+            rs = pst.executeQuery();
+            if(rs.next()){
+                String teamName = rs.getString("t.teamname");
+                String fieldName = rs.getString("f.fieldname");
+                txt_teamName.setText(teamName);
+                txt_fieldName.setText(fieldName);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void txt_dpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpKeyReleased
+        // TODO add your handling code here:        
+        if(txt_dp.getText().equals(txt_total.getText())){
+              txt_status.setText("Lunas");
+              
+        }
+        if(!txt_dp.getText().equals(txt_total.getText())){
+            txt_status.setText("Belum Lunas");
+        }
+    }//GEN-LAST:event_txt_dpKeyReleased
+
+    
+    private void readTotal(){
+        comboValue = list_lapangan.getSelectedItem().toString();
+        duration = (Integer) durasi_spinner.getValue();
+        if(comboValue == "Sintetis"){
+            fieldPrice = 150000;
+        }
+        if(comboValue == "Aspal"){
+            fieldPrice = 100000;
+        }
+        if(comboValue == "Plur"){
+            fieldPrice = 200000;
+        }
+        total = (duration*fieldPrice);
+        txt_total.setText(String.valueOf(total));
+    }
     /**
      * @param args the command line arguments
      */
@@ -269,9 +367,9 @@ public class Transaksi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancel;
+    private javax.swing.JButton btn_submit;
     private javax.swing.JSpinner durasi_spinner;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -284,11 +382,11 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> list_lapangan;
-    private javax.swing.JLabel status_label;
     private com.toedter.calendar.JDateChooser tgl_penyewaan;
     private javax.swing.JSpinner time_spinner;
     private javax.swing.JTextField txt_dp;
     private javax.swing.JTextField txt_fieldName;
+    private javax.swing.JLabel txt_status;
     private javax.swing.JTextField txt_teamName;
     private javax.swing.JTextField txt_total;
     // End of variables declaration//GEN-END:variables

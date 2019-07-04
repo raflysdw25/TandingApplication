@@ -22,7 +22,7 @@ public class Tanding {
     private static Connection conn =null;
     public static void main(String[] args) {
         // TODO code application logic here
-        new BerandaLogin().setVisible(true);
+        new BerandaLoginNew().setVisible(true);
     }
     
 }

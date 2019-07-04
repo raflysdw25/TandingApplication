@@ -409,6 +409,7 @@ public class TeamBeranda extends javax.swing.JFrame {
                 imageLabel.setIcon(viewimage);
             }else{
                 JOptionPane.showMessageDialog(null, "Team Name didn't show");
+                this.dispose();
             }
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error : "+ex.getMessage());
