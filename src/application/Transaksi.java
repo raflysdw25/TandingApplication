@@ -144,7 +144,7 @@ public class Transaksi extends javax.swing.JFrame {
         time_spinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         durasi_spinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        durasi_spinner.setModel(new javax.swing.SpinnerNumberModel());
+        durasi_spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
         durasi_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 durasi_spinnerStateChanged(evt);
