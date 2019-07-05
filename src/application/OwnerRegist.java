@@ -12,6 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -30,7 +31,7 @@ public class OwnerRegist extends javax.swing.JFrame {
      */
     
     private Connection conn = DatabaseTanding.getConnection();
-    private java.sql.PreparedStatement pst;
+    private PreparedStatement pst;
     private ResultSet rs;
     
     public OwnerRegist() {
@@ -234,19 +235,24 @@ public class OwnerRegist extends javax.swing.JFrame {
     private void btn_OwnerRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OwnerRegisterActionPerformed
         // TODO add your handling code here:
         try{
-        String sql = "INSERT INTO fieldowner ('fieldname','username','password','contact','address','facilities','photo') VALUES (?, ?, ?, ?, ?, ?, ?);" ;
-        pst = conn.prepareStatement(sql);
-        
-        pst.setString(1, txt_OwnerFieldName.getText());
-        pst.setString(2, txt_OwnerUsername.getText());
-        pst.setString(3, txt_OwnerPassword.getText());
-        pst.setString(4, txt_OwnerContactNo.getText());
-        pst.setString(5, txt_OwnerAddress.getText());
-        pst.setString(6, txt_OwnerFacilities.getText());
-        pst.setBytes(7, ownerFieldImage);
+            String sql = "INSERT INTO fieldowner (fieldname,username,password,contact,address,facilities,photo) VALUES (?, ?, ?, ?, ?, ?, ?)";  
+            pst = conn.prepareStatement(sql);
+
+            pst.setString(1, txt_OwnerFieldName.getText());
+            pst.setString(2, txt_OwnerUsername.getText());
+            pst.setString(3, txt_OwnerPassword.getText());
+            pst.setString(4, txt_OwnerContactNo.getText());
+            pst.setString(5, txt_OwnerAddress.getText());
+            pst.setString(6, txt_OwnerFacilities.getText());
+            pst.setBytes(7, ownerFieldImage);
+
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Register Successful");
+            this.setVisible(false);
+            new LoginOwnerNew().setVisible(true);
         }
         catch(Exception e){
-        
+            JOptionPane.showMessageDialog(null, "Register Error : "+e.getMessage());
         }
     }//GEN-LAST:event_btn_OwnerRegisterActionPerformed
 

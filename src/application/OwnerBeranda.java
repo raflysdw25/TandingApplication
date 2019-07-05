@@ -5,11 +5,13 @@
  */
 package application;
 
+import connection.DatabaseTanding;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -25,16 +27,18 @@ public class OwnerBeranda extends javax.swing.JFrame {
     private String contact_number;
     private String address;
     
-    Connection conn = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    Connection conn;
+    PreparedStatement pst;
+    ResultSet rs;
     
     public OwnerBeranda() {
         initComponents();
     }
     public OwnerBeranda(String id){
         initComponents();
+        conn = DatabaseTanding.getConnection();
         id_owner = id;
+        readDataTable();
     }
 
     /**
@@ -212,6 +216,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        readDataTable();
         try{
          String sql = "select * from fieldowner where id_field = '"+id_owner+"' ";
          pst = conn.prepareStatement(sql);
@@ -234,11 +239,23 @@ public class OwnerBeranda extends javax.swing.JFrame {
             }
         }
         catch(Exception ex){
-        JOptionPane.showMessageDialog(null, "Error : "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error : "+ex.getMessage());
         }
         
     }//GEN-LAST:event_formWindowOpened
 
+    private void readDataTable(){
+        String sql = "SELECT tl.id_team as \"ID Team\", t.teamname as \"Nama Team\", tl.id_owner as \"ID Owner\", tl.jenis_lapangan as \"Jenis Lapangan\", tl.waktu as \"Waktu\", tl.durasi as \"Durasi\", tl.tanggal_sewa as \"Tanggal Sewa\", tl.total_bayar as \"Total Bayar\" FROM transaksi_lapangan tl JOIN team t ON (tl.id_team = t.id_team) JOIN fieldowner f ON (tl.id_owner = f.id_field)"
+                + "where tl.id_owner = '"+id_owner+"'";
+        try {
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            order_table.setModel(DbUtils.resultSetToTableModel(rs));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
