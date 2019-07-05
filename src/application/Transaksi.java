@@ -9,6 +9,7 @@ import connection.DatabaseTanding;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -116,6 +117,11 @@ public class Transaksi extends javax.swing.JFrame {
 
         btn_submit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_submit.setText("SUBMIT");
+        btn_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_submitActionPerformed(evt);
+            }
+        });
 
         btn_cancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_cancel.setText("BATAL");
@@ -318,6 +324,53 @@ public class Transaksi extends javax.swing.JFrame {
             txt_status.setText("Belum Lunas");
         }
     }//GEN-LAST:event_txt_dpKeyReleased
+
+    private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
+        // TODO add your handling code here:
+        try{
+            String sql = "INSERT INTO transaksi_lapangan(id_team,id_owner,jenis_lapangan,waktu,durasi,tanggal_sewa,total_bayar) VALUES (?,?,?,?,?,?,?)";
+            pst = conn.prepareStatement(sql);
+            System.out.println("success to create Prepare");
+            
+            pst.setString(1, idTeam);
+            pst.setString(2, idField);
+            
+            String combovalue = list_lapangan.getSelectedItem().toString();
+            pst.setString(3, combovalue);
+            
+            String timeSpinner = "";
+            Integer intSpinner = (Integer) time_spinner.getValue();
+            timeSpinner = intSpinner.toString();
+            pst.setString(4, timeSpinner);
+            
+            String durasiSpinner = "";
+            Integer intSpinner2 = (Integer) durasi_spinner.getValue();
+            durasiSpinner = intSpinner2.toString();
+            pst.setString(5, durasiSpinner);
+            
+            Date tanggal = tgl_penyewaan.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String strDateOutput = sdf.format(tanggal);
+            pst.setString(6, strDateOutput);
+            
+            pst.setString(7, txt_total.getText());
+            
+            
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Data Saved Successful");
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }finally{
+            if (pst != null) {
+                try{
+                    pst.close();                    
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_btn_submitActionPerformed
 
     
     private void readTotal(){
