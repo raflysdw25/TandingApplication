@@ -233,6 +233,11 @@ public class TeamBeranda extends javax.swing.JFrame {
 
         btn_visitField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_visitField.setText("CHECK FIELD");
+        btn_visitField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_visitFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -356,7 +361,7 @@ public class TeamBeranda extends javax.swing.JFrame {
 
     private void btn_visitTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visitTeamActionPerformed
         // TODO add your handling code here:
-//        new VisitTeam(id_teamSearch).setVisible(true);
+        new VisitTeam(id_team,id_teamSearch).setVisible(true);
     }//GEN-LAST:event_btn_visitTeamActionPerformed
 
     private void tb_fieldSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_fieldSearchMouseClicked
@@ -372,7 +377,7 @@ public class TeamBeranda extends javax.swing.JFrame {
             
             //Set Inputan dengan yang diklik ditable
             if(rs.next()){
-                id_teamSearch = rs.getString("id_field");
+                id_fieldSearch = rs.getString("id_field");
                 btn_visitField.setVisible(true);
             }
                     
@@ -416,6 +421,12 @@ public class TeamBeranda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error : "+ex.getMessage());
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void btn_visitFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visitFieldActionPerformed
+        // TODO add your handling code here:
+        new VisitField(id_team,id_fieldSearch).setVisible(true);
+        this.setVisible(false);        
+    }//GEN-LAST:event_btn_visitFieldActionPerformed
     
     public void readDataTeam(){
         try{

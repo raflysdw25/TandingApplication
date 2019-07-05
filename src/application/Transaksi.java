@@ -286,15 +286,18 @@ public class Transaksi extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        String sql = "select t.teamname, f.fieldname from transaksi_lapangan tl JOIN team t ON (tl.id_team = t.id_team) JOIN fieldowner f ON (tl.id_owner = f.id_field) where t.id_team=? AND f.id_field = ?";        
+        PreparedStatement pst2;
+        ResultSet rs2;
+        String sqlTeam = "select teamname from team where id_team= '"+idTeam+"'";
+        String sqlField = "select fieldname from fieldowner where id_field='"+idField+"'";
         try {
-            pst = conn.prepareStatement(sql);
-            pst.setString(1, idTeam);
-            pst.setString(2, idField);
+            pst = conn.prepareStatement(sqlTeam); 
+            pst2 = conn.prepareStatement(sqlField);
             rs = pst.executeQuery();
-            if(rs.next()){
-                String teamName = rs.getString("t.teamname");
-                String fieldName = rs.getString("f.fieldname");
+            rs2 = pst2.executeQuery();
+            if(rs.next() && rs2.next()){
+                String teamName = rs.getString("teamname");
+                String fieldName = rs2.getString("fieldname");
                 txt_teamName.setText(teamName);
                 txt_fieldName.setText(fieldName);
             }
