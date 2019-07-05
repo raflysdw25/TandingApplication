@@ -362,6 +362,7 @@ public class TeamBeranda extends javax.swing.JFrame {
     private void btn_visitTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visitTeamActionPerformed
         // TODO add your handling code here:
         new VisitTeam(id_team,id_teamSearch).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_visitTeamActionPerformed
 
     private void tb_fieldSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_fieldSearchMouseClicked
@@ -425,12 +426,12 @@ public class TeamBeranda extends javax.swing.JFrame {
     private void btn_visitFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_visitFieldActionPerformed
         // TODO add your handling code here:
         new VisitField(id_team,id_fieldSearch).setVisible(true);
-        this.setVisible(false);        
+        this.dispose();
     }//GEN-LAST:event_btn_visitFieldActionPerformed
     
     public void readDataTeam(){
         try{
-            String sql = "select * from team";
+            String sql = "select id_team \"ID Team\", teamname \"Team Name\" ,contact \"Contact\", region \"Region\" from team";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             tb_teamSearch.setModel(DbUtils.resultSetToTableModel(rs));
@@ -448,7 +449,7 @@ public class TeamBeranda extends javax.swing.JFrame {
     
     public void readDataField(){
         try{
-            String sql = "select * from fieldowner";
+            String sql = "SELECT id_field \"ID Field\", fieldname \"Field Name\", contact \"Contact\", address \"Address\" FROM fieldowner";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             tb_fieldSearch.setModel(DbUtils.resultSetToTableModel(rs));
