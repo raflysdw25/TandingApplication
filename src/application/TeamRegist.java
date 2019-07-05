@@ -12,6 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -30,7 +31,7 @@ public class TeamRegist extends javax.swing.JFrame {
      */
     
     private Connection conn = DatabaseTanding.getConnection();
-    private java.sql.PreparedStatement pst;
+    private PreparedStatement pst;
     private ResultSet rs;
     
     public TeamRegist() {
@@ -248,19 +249,24 @@ public class TeamRegist extends javax.swing.JFrame {
     private void btn_TeamRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TeamRegisterActionPerformed
         // TODO add your handling code here:
         try{
-        String sql = "INSERT INTO team ('teamname','username','password','contact','region','description','photo') VALUES (?, ?, ?, ?, ?, ?, ?);" ;
-        pst = conn.prepareStatement(sql);
-        
-        pst.setString(1, txt_TeamName.getText());
-        pst.setString(2, txt_TeamUsername.getText());
-        pst.setString(3, txt_TeamPassword.getText());
-        pst.setString(4, txt_TeamContactNo.getText());
-        pst.setString(5, txt_TeamDomisili.getText());
-        pst.setString(6, txt_TeamDescription.getText());
-        pst.setBytes(7, teamImage);
+            String sql = "INSERT INTO team (teamname,username,password,contact,region,description,photo) VALUES (?, ?, ?, ?, ?, ?, ?)" ;
+            pst = conn.prepareStatement(sql);
+
+            pst.setString(1, txt_TeamName.getText());
+            pst.setString(2, txt_TeamUsername.getText());
+            pst.setString(3, txt_TeamPassword.getText());
+            pst.setString(4, txt_TeamContactNo.getText());
+            pst.setString(5, txt_TeamDomisili.getText());
+            pst.setString(6, txt_TeamDescription.getText());
+            pst.setBytes(7, teamImage);
+
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Register Successful");
+            this.setVisible(false);
+            new LoginTeamNew().setVisible(true);
         }
         catch(Exception e){
-        
+            JOptionPane.showMessageDialog(null, "Register Error : "+e.getMessage());
         }
     }//GEN-LAST:event_btn_TeamRegisterActionPerformed
 

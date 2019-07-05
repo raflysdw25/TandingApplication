@@ -145,13 +145,14 @@ public class LoginTeamNew extends javax.swing.JFrame {
     private void btn_SignInTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignInTeamActionPerformed
         try {
             String sql = "select * from team where username=? and password=?";
-            prep = (PreparedStatement) conn.prepareStatement(sql);
+            prep = conn.prepareStatement(sql);
             prep.setString(1,txt_TeamUserName.getText());
             prep.setString(2, pwd_Team.getText());
             res = prep.executeQuery();
             if (res.next()) {
                 String id_team = res.getString("id_team");
                 TeamBeranda team = new TeamBeranda(id_team);
+                JOptionPane.showMessageDialog(null, "Login Succesful");
                 team.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Username dan Password Salah");
