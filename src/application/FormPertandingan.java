@@ -9,8 +9,10 @@ import connection.DatabaseTanding;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 
@@ -47,16 +49,16 @@ public class FormPertandingan extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        team2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         team1 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        team2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        tanggal = new com.toedter.calendar.JDateChooser();
-        tempat = new javax.swing.JComboBox<>();
+        tanggal_pertandingan = new com.toedter.calendar.JDateChooser();
+        tempat_pertandingan = new javax.swing.JComboBox<>();
         Date date = new Date();
         SpinnerDateModel sm = new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         waktu_spinner = new javax.swing.JSpinner(sm);
@@ -88,8 +90,13 @@ public class FormPertandingan extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Daftar");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        tempat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tempat_pertandingan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         JSpinner.DateEditor de = new JSpinner.DateEditor(waktu_spinner, "HH:mm:ss");
         waktu_spinner.setEditor(de);
@@ -108,7 +115,7 @@ public class FormPertandingan extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(team2))
+                        .addComponent(team1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -126,9 +133,9 @@ public class FormPertandingan extends javax.swing.JFrame {
                                     .addComponent(durasi_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(waktu_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(tempat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                                        .addComponent(team1)))))))
+                                        .addComponent(tempat_pertandingan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tanggal_pertandingan, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                                        .addComponent(team2)))))))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,19 +146,19 @@ public class FormPertandingan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(team2, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                    .addComponent(team1, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(team1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                    .addComponent(team2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(tempat, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                    .addComponent(tempat_pertandingan, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tanggal_pertandingan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -167,6 +174,51 @@ public class FormPertandingan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            String sql = "INSERT INTO pertandingan(id_team1,id_team2,tgl_pertandingan,tempat_pertandingan,waktu_pertandingan,durasi) VALUES (?,?,?,?,?,?)";
+            pst = conn.prepareStatement(sql);
+            System.out.println("success to create Prepare");
+            
+            pst.setString(1, team1.getText());
+            pst.setString(2, team2.getText());
+            
+            Date tanggal = tanggal_pertandingan.getDate();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String strDateOutput = sdf.format(tanggal);
+            pst.setString(3, strDateOutput);
+            
+            String combovalue = tempat_pertandingan.getSelectedItem().toString();
+            pst.setString(4, combovalue);
+            
+            String timeSpinner = "";
+            Integer intSpinner = (Integer) waktu_spinner.getValue();
+            timeSpinner = intSpinner.toString();
+            pst.setString(5, timeSpinner);
+            
+            String durasiSpinner = "";
+            Integer intSpinner2 = (Integer) durasi_spinner.getValue();
+            durasiSpinner = intSpinner2.toString();
+            pst.setString(6, durasiSpinner);
+            
+            
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Data Saved Successful");
+
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }finally{
+            if (pst != null) {
+                try{
+                    pst.close();                    
+                }catch(Exception ex){
+                    JOptionPane.showMessageDialog(null, ex);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,10 +265,10 @@ public class FormPertandingan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private com.toedter.calendar.JDateChooser tanggal;
+    private com.toedter.calendar.JDateChooser tanggal_pertandingan;
     private javax.swing.JTextField team1;
     private javax.swing.JTextField team2;
-    private javax.swing.JComboBox<String> tempat;
+    private javax.swing.JComboBox<String> tempat_pertandingan;
     private javax.swing.JSpinner waktu_spinner;
     // End of variables declaration//GEN-END:variables
 }
