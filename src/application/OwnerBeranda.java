@@ -5,6 +5,7 @@
  */
 package application;
 
+import connection.DatabaseTanding;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,15 +26,16 @@ public class OwnerBeranda extends javax.swing.JFrame {
     private String contact_number;
     private String address;
     
-    Connection conn = null;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
+    Connection conn;
+    PreparedStatement pst;
+    ResultSet rs;
     
     public OwnerBeranda() {
         initComponents();
     }
     public OwnerBeranda(String id){
         initComponents();
+        conn = DatabaseTanding.getConnection();
         id_owner = id;
     }
 
@@ -234,7 +236,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
             }
         }
         catch(Exception ex){
-        JOptionPane.showMessageDialog(null, "Error : "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error : "+ex.getMessage());
         }
         
     }//GEN-LAST:event_formWindowOpened

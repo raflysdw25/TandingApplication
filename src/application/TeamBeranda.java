@@ -40,6 +40,7 @@ public class TeamBeranda extends javax.swing.JFrame {
         btn_visitTeam.setVisible(false);
         btn_visitField.setVisible(false);
         readDataTeam();
+        readDataField();
         
     }
 
