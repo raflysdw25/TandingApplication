@@ -31,6 +31,7 @@ public class FormPertandingan extends javax.swing.JFrame {
      */
     public FormPertandingan() {
         initComponents();
+        
     }
 
     public FormPertandingan(String id_team1, String id_teamView){
@@ -38,6 +39,7 @@ public class FormPertandingan extends javax.swing.JFrame {
         conn = DatabaseTanding.getConnection();
         idTeam1 = id_team1;
         idTeamView = id_teamView;
+        
         
     }
     /**
@@ -56,7 +58,7 @@ public class FormPertandingan extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_daftar = new javax.swing.JButton();
         tanggal_pertandingan = new com.toedter.calendar.JDateChooser();
         tempat_pertandingan = new javax.swing.JComboBox<>();
         Date date = new Date();
@@ -65,6 +67,11 @@ public class FormPertandingan extends javax.swing.JFrame {
         durasi_spinner = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, jLabel1.getFont().getSize()+13));
         jLabel1.setText("PERTANDINGAN");
@@ -72,8 +79,12 @@ public class FormPertandingan extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Team One");
 
+        team1.setEditable(false);
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Team Two");
+
+        team2.setEditable(false);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Tanggal");
@@ -87,16 +98,14 @@ public class FormPertandingan extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Durasi");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Daftar");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_daftar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_daftar.setText("Daftar");
+        btn_daftar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_daftar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_daftarActionPerformed(evt);
             }
         });
-
-        tempat_pertandingan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         JSpinner.DateEditor de = new JSpinner.DateEditor(waktu_spinner, "HH:mm:ss");
         waktu_spinner.setEditor(de);
@@ -126,7 +135,7 @@ public class FormPertandingan extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btn_daftar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,22 +177,22 @@ public class FormPertandingan extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(durasi_spinner, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(169, 169, 169)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_daftar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_daftarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_daftarActionPerformed
         // TODO add your handling code here:
         try{
             String sql = "INSERT INTO pertandingan(id_team1,id_team2,tgl_pertandingan,tempat_pertandingan,waktu_pertandingan,durasi) VALUES (?,?,?,?,?,?)";
             pst = conn.prepareStatement(sql);
             System.out.println("success to create Prepare");
             
-            pst.setString(1, team1.getText());
-            pst.setString(2, team2.getText());
+            pst.setString(1, idTeam1);
+            pst.setString(2, idTeamView);
             
             Date tanggal = tanggal_pertandingan.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -218,7 +227,29 @@ public class FormPertandingan extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_daftarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        String sqlTeam1 = "select teamname from team where id_team = '"+idTeam1+"'";
+        String sqlTeam2 = "select teamname from team where id_team = '"+idTeamView+"'";
+        try {
+            pst = conn.prepareStatement(sqlTeam1);
+            rs = pst.executeQuery();
+            PreparedStatement pst2 = conn.prepareStatement(sqlTeam2);
+            ResultSet rs2 = pst2.executeQuery();
+            if(rs.next() && rs2.next()){
+                String team1 = rs.getString("teamname");
+                String team2 = rs2.getString("teamname");
+                
+                this.team1.setText(team1);
+                this.team2.setText(team2);
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }                
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -256,8 +287,8 @@ public class FormPertandingan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_daftar;
     private javax.swing.JSpinner durasi_spinner;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
