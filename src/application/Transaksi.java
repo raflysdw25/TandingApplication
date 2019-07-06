@@ -138,7 +138,7 @@ public class Transaksi extends javax.swing.JFrame {
         txt_fieldName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         list_lapangan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        list_lapangan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sintetis", "Aspal", "Plur" }));
+        list_lapangan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sintetis", "Semen", "Vinyl", "Paquet" }));
         list_lapangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 list_lapanganActionPerformed(evt);
@@ -378,13 +378,16 @@ public class Transaksi extends javax.swing.JFrame {
         comboValue = list_lapangan.getSelectedItem().toString();
         duration = (Integer) durasi_spinner.getValue();
         if(comboValue == "Sintetis"){
-            fieldPrice = 150000;
+            fieldPrice = 140000;
         }
-        if(comboValue == "Aspal"){
-            fieldPrice = 100000;
+        if(comboValue == "Semen"){
+            fieldPrice = 65000;
         }
-        if(comboValue == "Plur"){
-            fieldPrice = 200000;
+        if(comboValue == "Vinyl"){
+            fieldPrice = 125000;
+        }
+        if(comboValue == "Paquet"){
+            fieldPrice = 130000;
         }
         total = (duration*fieldPrice);
         txt_total.setText(String.valueOf(total));
