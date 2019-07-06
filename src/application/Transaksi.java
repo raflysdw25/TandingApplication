@@ -328,7 +328,7 @@ public class Transaksi extends javax.swing.JFrame {
     private void btn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_submitActionPerformed
         // TODO add your handling code here:
         try{
-            String sql = "INSERT INTO transaksi_lapangan(id_team,id_owner,jenis_lapangan,waktu,durasi,tanggal_sewa,total_bayar) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO transaksi_lapangan(id_team,id_owner,jenis_lapangan,waktu,durasi,tanggal_sewa,total_bayar,downpayment,status) VALUES (?,?,?,?,?,?,?,?,?)";
             pst = conn.prepareStatement(sql);
             System.out.println("success to create Prepare");
             
@@ -354,7 +354,8 @@ public class Transaksi extends javax.swing.JFrame {
             pst.setString(6, strDateOutput);
             
             pst.setString(7, txt_total.getText());
-            
+            pst.setString(8, txt_dp.getText());
+            pst.setString(9, txt_status.getText());
             
             pst.execute();
             JOptionPane.showMessageDialog(null, "Data Saved Successful");

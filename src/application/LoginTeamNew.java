@@ -154,6 +154,7 @@ public class LoginTeamNew extends javax.swing.JFrame {
                 TeamBeranda team = new TeamBeranda(id_team);
                 JOptionPane.showMessageDialog(null, "Login Succesful");
                 team.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Username dan Password Salah");
             }
