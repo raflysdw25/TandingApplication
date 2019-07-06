@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Transaksi_Report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5003bbce-7794-4768-be0e-37431d93d52d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Tanding Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="id_team" class="java.lang.Integer"/>
+	<parameter name="id_owner" class="java.lang.Integer"/>
+	<parameter name="tanggal" class="java.sql.Date"/>
+	<parameter name="waktu" class="java.sql.Time"/>
+	<queryString>
+		<![CDATA[SELECT tl.id_team as "ID Team", t.teamname as  "Nama Team", 
+tl.id_owner as "ID Owner", f.fieldname as "Field Name",tl.jenis_lapangan as "Jenis Lapangan",
+ tl.waktu as "Waktu", tl.durasi as "Durasi", 
+ tl.tanggal_sewa as "Tanggal Sewa", tl.total_bayar as "Total Bayar" , 
+ tl.downpayment as "Down Payment", tl.status as "Status"
+ FROM transaksi_lapangan tl JOIN team t ON (tl.id_team = t.id_team) 
+ JOIN fieldowner f ON (tl.id_owner = f.id_field)
+where (tl.id_team =  $P{id_team})  AND
+(tl.id_owner =  $P{id_owner}) AND
+(tl.tanggal_sewa =  $P{tanggal} ) AND
+(tl.waktu = $P{waktu} )]]>
+	</queryString>
+	<field name="ID Team" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ID Team"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+	</field>
+	<field name="Nama Team" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Nama Team"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="team"/>
+	</field>
+	<field name="ID Owner" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ID Owner"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+	</field>
+	<field name="Field Name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Field Name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="fieldowner"/>
+	</field>
+	<field name="Jenis Lapangan" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Jenis Lapangan"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+	</field>
+	<field name="Waktu" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.label" value="Waktu"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+		<property name="net.sf.jasperreports.jdbc.time.zone" value="HH:mm"/>
+	</field>
+	<field name="Durasi" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Durasi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+	</field>
+	<field name="Tanggal Sewa" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="Tanggal Sewa"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+		<property name="net.sf.jasperreports.jdbc.time.zone" value="yyyy-MM-dd"/>
+	</field>
+	<field name="Total Bayar" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Total Bayar"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+	</field>
+	<field name="Down Payment" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Down Payment"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+	</field>
+	<field name="Status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="transaksi_lapangan"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="119" splitType="Stretch">
+			<frame>
+				<reportElement x="-20" y="0" width="840" height="119" uuid="2bf4637a-25fe-4bd8-80a6-30f7916df360"/>
+				<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4">
+					<pen lineWidth="2.5"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="292" y="32" width="389" height="62" uuid="7cba0148-962f-49f9-aff3-c07f9356764e"/>
+					<textElement textAlignment="Center">
+						<font fontName="Century Gothic" size="24"/>
+					</textElement>
+					<text><![CDATA[BUKTI TRANSAKSI PENYEWAAN LAPANGAN ]]></text>
+				</staticText>
+				<image>
+					<reportElement x="102" y="37" width="174" height="49" uuid="22df7fa1-8094-4a68-8476-9ca913178807"/>
+					<imageExpression><![CDATA["C:/Users/asus/Downloads/logo.jpg"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="297" splitType="Stretch">
+			<frame>
+				<reportElement x="-20" y="0" width="841" height="39" uuid="13a8d2a4-2aa0-4054-b575-e14d581fea08"/>
+				<box>
+					<pen lineWidth="2.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="334" y="5" width="185" height="30" uuid="c565b2a4-0349-4ee8-bb8c-eafaa15c5c95"/>
+					<textElement textAlignment="Center">
+						<font size="20"/>
+					</textElement>
+					<text><![CDATA[Rincian Transaksi]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement x="464" y="197" width="169" height="30" uuid="74f7c327-7230-4a3b-9e5f-571e8a76b52b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Downpayment (DP) 	:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="241" width="169" height="30" uuid="c428111b-d831-405a-bee0-637815a0143f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status Pembayaran	:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="660" y="241" width="134" height="30" uuid="77109ccd-b3d1-4a39-b426-85c891e073ac"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="657" y="197" width="137" height="30" uuid="3a10c524-a0b1-4b70-a030-67257bd3635b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Down Payment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="658" y="152" width="135" height="30" uuid="e717e48a-b345-4e26-89dd-cab7c16b7115"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total Bayar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="657" y="102" width="137" height="30" uuid="1c6a02eb-fae7-45ce-930f-78c0d1d30728"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Jenis Lapangan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="656" y="52" width="138" height="30" uuid="84e3a674-2883-401d-b4d7-6ebff86ac746"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tanggal Sewa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="464" y="52" width="170" height="30" uuid="63644d93-e256-4610-a767-10e9837d843c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Sewa 		: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="464" y="102" width="171" height="30" uuid="318f2c33-005b-4fb9-b73f-bd0a4c52756b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jenis Lapangan		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="464" y="152" width="171" height="30" uuid="636ba299-8f8f-4bc4-98b6-031e59cae982"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Bayar			:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="214" y="52" width="174" height="30" uuid="33fe49a1-2cee-4a7f-8c1e-8de329718e42"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID Team}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="91" width="176" height="30" uuid="7d994261-bacb-4d1f-a7e4-0590b95c5295"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nama Team}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="131" width="174" height="30" uuid="a9719d07-f50a-435c-a033-786597654ee3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID Owner}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="177" width="178" height="30" uuid="d3548a3b-d00a-46e5-8e44-9f15cacdbc19"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Field Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="215" width="178" height="30" uuid="8be6a760-d511-480b-a317-b4f4badb3ba6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Waktu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="262" width="177" height="30" uuid="58119270-217c-4201-ad0f-a064d3c06d72"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Durasi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="262" width="185" height="30" uuid="8364e7e8-eb8e-490c-939d-474cc2d05207"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Durasi 		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="215" width="186" height="30" uuid="3c54c71d-7895-41e7-bfaa-f09d05aaf392"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Waktu		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="177" width="184" height="30" uuid="b9624298-a135-46e7-a8bf-e077a9b81f28"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Field Name		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="131" width="187" height="30" uuid="9b3ca922-7c32-453e-b67a-ccbfa69204ab"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Owner 		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="91" width="185" height="30" uuid="b1ef9466-363d-4f2d-a2b7-5f41f9711a2b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Team		:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="187" height="30" uuid="c4f423ce-7737-4ed3-a5dc-bbfbc6d14a26"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Team 		:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="68" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="-10" y="10" width="570" height="48" uuid="8ef1d93d-c34c-4a52-a7e6-d891836e31bc"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Catatan : diharapkan nota ini dibawa ketika akan mulai pertandingan. Nota ini sebagai barang bukti bahwa transaksi telah dilakukan]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

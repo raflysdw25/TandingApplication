@@ -136,9 +136,6 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="fieldimage">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Photo Not Available"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

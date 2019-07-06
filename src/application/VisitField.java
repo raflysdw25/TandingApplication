@@ -64,8 +64,6 @@ public class VisitField extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        fieldimage.setText("Photo Not Available");
-
         jDesktopPane1.setLayer(fieldimage, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -207,8 +205,12 @@ public class VisitField extends javax.swing.JFrame {
                 txt_fasilitas.setText(facilities);
                 
                 byte[] imagedata = rs.getBytes("photo");
-                viewimage = new ImageIcon(imagedata);
-                fieldimage.setIcon(viewimage);
+                if(imagedata == null){
+                    fieldimage.setText("Photo Not Available");
+                }else{
+                    viewimage = new ImageIcon(imagedata);
+                    fieldimage.setIcon(viewimage);
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

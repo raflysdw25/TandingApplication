@@ -82,8 +82,6 @@ public class OwnerBeranda extends javax.swing.JFrame {
         label_Address.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         label_Address.setText("Address");
 
-        imagelabel.setText("Photo Not Available");
-
         jDesktopPane1.setLayer(imagelabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -232,8 +230,12 @@ public class OwnerBeranda extends javax.swing.JFrame {
              label_Address.setText(address);
              
              byte[] imagedata = rs.getBytes("photo");
-             viewimage = new ImageIcon(imagedata);
-             imagelabel.setIcon(viewimage);
+                if(imagedata == null){
+                    imagelabel.setText("Photo Not Available");
+                }else{
+                    viewimage = new ImageIcon(imagedata);
+                    imagelabel.setIcon(viewimage);
+                }
          }
          else{
              JOptionPane.showMessageDialog(null, "Field Name didn't show");
@@ -246,8 +248,12 @@ public class OwnerBeranda extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void readDataTable(){
-        String sql = "SELECT tl.id_team as \"ID Team\", t.teamname as \"Nama Team\", tl.id_owner as \"ID Owner\", tl.jenis_lapangan as \"Jenis Lapangan\", tl.waktu as \"Waktu\", tl.durasi as \"Durasi\", tl.tanggal_sewa as \"Tanggal Sewa\", tl.total_bayar as \"Total Bayar\" FROM transaksi_lapangan tl JOIN team t ON (tl.id_team = t.id_team) JOIN fieldowner f ON (tl.id_owner = f.id_field)"
-                + "where tl.id_owner = '"+id_owner+"'";
+        String sql = "SELECT tl.id_team as \"ID Team\", t.teamname as \"Nama Team\", tl.id_owner as \"ID Owner\","
+                + "f.fieldname as \"Field Name\", tl.jenis_lapangan as \"Jenis Lapangan\", tl.waktu as \"Waktu\", "
+                + "tl.durasi as \"Durasi\", tl.tanggal_sewa as \"Tanggal Sewa\", tl.total_bayar as \"Total Bayar\", "
+                + "tl.downpayment as \"DP\", tl.status as \"Status\" "
+                + "FROM transaksi_lapangan tl JOIN team t ON (tl.id_team = t.id_team) "
+                + "JOIN fieldowner f ON (tl.id_owner = f.id_field) where tl.id_owner ='"+id_owner+"'";
         try {
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();

@@ -62,8 +62,6 @@ public class VisitTeam extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        imageteam_label.setText("Photo Not Available");
-
         jDesktopPane1.setLayer(imageteam_label, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -205,8 +203,13 @@ public class VisitTeam extends javax.swing.JFrame {
                 txt_description.setText(description);
                 
                 byte[] imagedata = rs.getBytes("photo");
-                viewimage = new ImageIcon(imagedata);
-                imageteam_label.setIcon(viewimage);
+                if(imagedata == null){
+                    imageteam_label.setText("Photo Not Available");
+                }else{
+                    viewimage = new ImageIcon(imagedata);
+                    imageteam_label.setIcon(viewimage);
+                }
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

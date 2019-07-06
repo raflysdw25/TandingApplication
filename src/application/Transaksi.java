@@ -6,16 +6,28 @@
 package application;
 
 import connection.DatabaseTanding;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -27,7 +39,7 @@ public class Transaksi extends javax.swing.JFrame {
     ResultSet rs;
     
     private String idTeam, idField;
-    private String comboValue;
+    private String comboValue, time, strDateOutput ;
     private Integer fieldPrice, duration, total, dp;
     /**
      * Creates new form Transaksi
@@ -338,10 +350,11 @@ public class Transaksi extends javax.swing.JFrame {
             String combovalue = list_lapangan.getSelectedItem().toString();
             pst.setString(3, combovalue);
             
-            String timeSpinner = "";
-            Integer intSpinner = (Integer) time_spinner.getValue();
-            timeSpinner = intSpinner.toString();
-            pst.setString(4, timeSpinner);
+            Object value = time_spinner.getValue();            
+            Date date = (Date)value;
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            time = format.format(date);
+            pst.setString(4, time);
             
             String durasiSpinner = "";
             Integer intSpinner2 = (Integer) durasi_spinner.getValue();
@@ -350,7 +363,7 @@ public class Transaksi extends javax.swing.JFrame {
             
             Date tanggal = tgl_penyewaan.getDate();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String strDateOutput = sdf.format(tanggal);
+            strDateOutput = sdf.format(tanggal);
             pst.setString(6, strDateOutput);
             
             pst.setString(7, txt_total.getText());
@@ -359,7 +372,9 @@ public class Transaksi extends javax.swing.JFrame {
             
             pst.execute();
             JOptionPane.showMessageDialog(null, "Data Saved Successful");
-
+            makeReport();
+            this.dispose();
+            new TeamBeranda(idTeam).setVisible(true);
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
         }finally{
@@ -391,6 +406,32 @@ public class Transaksi extends javax.swing.JFrame {
         }
         total = (duration*fieldPrice);
         txt_total.setText(String.valueOf(total));
+    }
+    
+    public void makeReport(){                      
+        try {
+            FileInputStream fis = new FileInputStream("src\\application\\file\\Transaksi_Report.jrxml");
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            JasperReport jr = (JasperReport)JasperCompileManager.compileReport(bis);
+            
+//            Konversi
+            Date tanggal = new SimpleDateFormat("yyyy-MM-dd").parse(strDateOutput);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");            
+            LocalTime dtime = LocalTime.parse(time, formatter);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("id_team",Integer.parseInt(idTeam));
+            map.put("id_owner",Integer.parseInt(idField));
+            map.put("tanggal",tanggal);
+            map.put("waktu", java.sql.Time.valueOf(dtime));
+            
+            JasperPrint jp = JasperFillManager.fillReport(jr, map,conn);
+            
+            //View Report to UI
+            JasperViewer.viewReport(jp,false);
+        } catch (Exception e) {
+            e.printStackTrace();
+            
+        }
     }
     /**
      * @param args the command line arguments

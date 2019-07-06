@@ -468,8 +468,12 @@ public class TeamBeranda extends javax.swing.JFrame {
                 
                 
                 byte[] imagedata = rs.getBytes("photo");
-                viewimage = new ImageIcon(imagedata);
-                imageLabel.setIcon(viewimage);
+                if(imagedata == null){
+                    imageLabel.setText("Photo Not Available");
+                }else{
+                    viewimage = new ImageIcon(imagedata);
+                    imageLabel.setIcon(viewimage);
+                }
             }else{
                 JOptionPane.showMessageDialog(null, "Team Name didn't show");
                 this.dispose();

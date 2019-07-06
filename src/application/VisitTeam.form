@@ -143,9 +143,6 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JLabel" name="imageteam_label">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Photo Not Available"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
