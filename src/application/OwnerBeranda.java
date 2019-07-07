@@ -22,10 +22,8 @@ public class OwnerBeranda extends javax.swing.JFrame {
     /**
      * Creates new form OwnerBeranda
      */
-    private String id_owner;
-    private String fieldName;
-    private String contact_number;
-    private String address;
+    private String id_owner, fieldName, contact_number, address;
+    private String status, id_team, tgl_sewa, waktu;
     
     Connection conn;
     PreparedStatement pst;
@@ -60,6 +58,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         order_table = new javax.swing.JTable();
+        btn_updateStatus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -151,23 +150,41 @@ public class OwnerBeranda extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        order_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                order_tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(order_table);
+
+        btn_updateStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_updateStatus.setText("UPDATE STATUS PEMBAYARAN");
+        btn_updateStatus.setEnabled(false);
+        btn_updateStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_updateStatus, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(btn_updateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -190,7 +207,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,14 +217,17 @@ public class OwnerBeranda extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
         pack();
@@ -247,11 +267,60 @@ public class OwnerBeranda extends javax.swing.JFrame {
         
     }//GEN-LAST:event_formWindowOpened
 
+    private void order_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_order_tableMouseClicked
+        // TODO add your handling code here:
+         int row = order_table.getSelectedRow();
+        String idteamClickTable = (order_table.getModel().getValueAt(row,0).toString());
+        
+        try{
+            String sql = "select * from transaksi_lapangan where id_team = '"+idteamClickTable+"' ";
+            pst = conn.prepareStatement(sql);            
+            rs = pst.executeQuery();
+                       
+            //Set Inputan dengan yang diklik ditable
+            if(rs.next()){
+                id_team = rs.getString("id_team");
+                tgl_sewa = rs.getString("tanggal_sewa");
+                waktu = rs.getString("waktu");
+                status = rs.getString("status");                
+            }
+                    
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+        }finally{
+            try{
+                rs.close();
+                pst.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
+        }
+    }//GEN-LAST:event_order_tableMouseClicked
+
+    private void btn_updateStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateStatusActionPerformed
+        // TODO add your handling code here:
+        if(status.equals("Lunas")){
+            JOptionPane.showMessageDialog(null, "Pembayaran lapangan telah lunas");
+        }else{
+            try {
+                String sql = "UPDATE transaksi_lapangan SET status = ? WHERE id_field = '"+id_owner+"' "
+                        + "AND id_team = '"+id_team+"' AND tanggal_sewa = '"+tgl_sewa+"' AND waktu = '"+waktu+"'";
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, "Lunas");
+                pst.execute();
+                
+                JOptionPane.showMessageDialog(null, "Update Telah Dilakukan");
+                readDataTable();
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_btn_updateStatusActionPerformed
+
     private void readDataTable(){
-        String sql = "SELECT tl.id_team as \"ID Team\", t.teamname as \"Nama Team\", tl.id_owner as \"ID Owner\","
-                + "f.fieldname as \"Field Name\", tl.jenis_lapangan as \"Jenis Lapangan\", tl.waktu as \"Waktu\", "
-                + "tl.durasi as \"Durasi\", tl.tanggal_sewa as \"Tanggal Sewa\", tl.total_bayar as \"Total Bayar\", "
-                + "tl.downpayment as \"DP\", tl.status as \"Status\" "
+        String sql = "SELECT tl.id_team as \"ID Team\", t.teamname as \"Nama Team\","
+                + "tl.jenis_lapangan as \"Jenis Lapangan\", tl.waktu as \"Waktu\", "
+                + "tl.durasi as \"Durasi\", tl.tanggal_sewa as \"Tanggal Sewa\", "
+                + "tl.status as \"Status\" "
                 + "FROM transaksi_lapangan tl JOIN team t ON (tl.id_team = t.id_team) "
                 + "JOIN fieldowner f ON (tl.id_owner = f.id_field) where tl.id_owner ='"+id_owner+"'";
         try {
@@ -299,6 +368,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_updateStatus;
     private javax.swing.JLabel imagelabel;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;

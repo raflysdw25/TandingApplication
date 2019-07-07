@@ -42,6 +42,7 @@ public class TeamBeranda extends javax.swing.JFrame {
         readDataTeam();
         readDataField();
         readDataPertandingan();
+        
     }
 
     /**
@@ -158,7 +159,7 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addComponent(label_teamDomisili)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_editProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pnl_teamSearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
@@ -190,7 +191,7 @@ public class TeamBeranda extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Jadwal Pertandingan Team", jPanel3);
@@ -333,7 +334,7 @@ public class TeamBeranda extends javax.swing.JFrame {
             .addGroup(pnl_teamSearchLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -352,35 +353,39 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnl_teamProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnl_teamSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(pnl_teamSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_teamSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_teamSearchKeyReleased
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         String paramName = "'%"+txt_teamSearch.getText()+"%'";
-        String sql = "select id_team, teamname,contact,region from team where teamname like" + paramName;
+        if(paramName.equals("")){
+            readDataTeam();
+        }else{
+            String sql = "select id_team, teamname,contact,region from team where teamname like" + paramName;
             
-        try{
-            pst = conn.prepareStatement(sql);
-            rs = pst.executeQuery();
-            tb_teamSearch.setModel(DbUtils.resultSetToTableModel(rs));              
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
+            try{
+                pst = conn.prepareStatement(sql);
+                rs = pst.executeQuery();
+                tb_teamSearch.setModel(DbUtils.resultSetToTableModel(rs));              
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            }
         }
     }//GEN-LAST:event_txt_teamSearchKeyReleased
 
     private void txt_fieldSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fieldSearchKeyReleased
         // TODO add your handling code here:
-        String paramName = "'%"+txt_teamSearch.getText()+"%'";
-        String sql = "select id_team, teamname,contact,region from team where teamname like" + paramName;
+        String paramName = "'%"+txt_fieldSearch.getText()+"%'";
+        String sql = "select id_field, fieldname,contact,address from fieldowner where fieldname like" + paramName;
             
         try{
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
-            tb_teamSearch.setModel(DbUtils.resultSetToTableModel(rs));              
+            tb_fieldSearch.setModel(DbUtils.resultSetToTableModel(rs));              
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -497,7 +502,7 @@ public class TeamBeranda extends javax.swing.JFrame {
     
     public void readDataTeam(){
         try{
-            String sql = "select id_team \"ID Team\", teamname \"Team Name\" ,contact \"Contact\", region \"Region\" from team";
+            String sql = "select id_team \"ID Team\", teamname \"Team Name\" ,contact \"Contact\", region \"Region\" from team where id_team != '"+id_team+"'";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             tb_teamSearch.setModel(DbUtils.resultSetToTableModel(rs));
@@ -533,10 +538,10 @@ public class TeamBeranda extends javax.swing.JFrame {
     
     public void readDataPertandingan(){
         try{
-            String sql = "select p.id_team1 \"ID Team Home\",t.teamname \"Team Home Name\", p.id_team2 \"ID Team Away\", t.teamname \"Team Home Away\", "
-                    + "p.tgl_pertandingan \"Tanggal\", p.tempat_pertandingan \"Tempat\", p.waktu_pertandingan \"Waktu\", p.durasi \"Durasi\" "
-                    + "from pertandingan p JOIN team t ON ((p.id_team1 = t.id_team) AND (p.id_team2 = t.id_team)) "
-                    + "where p.id_team1 = '"+id_team+"' OR p.id_team2 = '"+id_team+"'";
+            String sql = "SELECT t.teamname \"Team Home\", tm.teamname \"Team Away\", "
+                    + "p.tgl_pertandingan \"Tanggal Pertandingan\", p.waktu_pertandingan \"Waktu\",\n" 
+                    + "p.durasi \"Durasi\" FROM PERTANDINGAN p JOIN team t on (p.id_team1 = t.id_team) "
+                    + "JOIN team tm ON (p.id_team2 = tm.id_team) where p.id_team1 = '"+id_team+"' OR p.id_team2 = '"+id_team+"'";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
             tb_pertandingan.setModel(DbUtils.resultSetToTableModel(rs));

@@ -166,6 +166,7 @@ public class LoginTeamNew extends javax.swing.JFrame {
     private void btn_RegisterTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegisterTeamActionPerformed
         // TODO add your handling code here:
         new TeamRegist().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btn_RegisterTeamActionPerformed
 
     /**
