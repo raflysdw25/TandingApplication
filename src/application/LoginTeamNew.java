@@ -46,6 +46,7 @@ public class LoginTeamNew extends javax.swing.JFrame {
         txt_TeamUserName = new javax.swing.JTextField();
         btn_SignInTeam = new javax.swing.JButton();
         btn_RegisterTeam = new javax.swing.JButton();
+        btn_back = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +93,16 @@ public class LoginTeamNew extends javax.swing.JFrame {
             }
         });
 
+        btn_back.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_back.setForeground(new java.awt.Color(255, 255, 255));
+        btn_back.setText("Kembali ke Halaman Sebelumnya");
+        btn_back.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_backMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,13 +128,17 @@ public class LoginTeamNew extends javax.swing.JFrame {
                             .addComponent(btn_RegisterTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(128, 128, 128)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_back)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(btn_back, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
@@ -183,6 +198,12 @@ public class LoginTeamNew extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_RegisterTeamActionPerformed
 
+    private void btn_backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_backMouseClicked
+        // TODO add your handling code here:
+        new BerandaLoginNew().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_backMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -221,6 +242,7 @@ public class LoginTeamNew extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_RegisterTeam;
     private javax.swing.JButton btn_SignInTeam;
+    private javax.swing.JLabel btn_back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

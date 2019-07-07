@@ -30,8 +30,8 @@ public class BerandaLoginNew extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btn_LoginAsOwner = new javax.swing.JButton();
-        btn_LoginAsTeam = new javax.swing.JButton();
+        btn_loginOwner = new javax.swing.JLabel();
+        btn_loginTeam = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,25 +46,27 @@ public class BerandaLoginNew extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Masuk Sebagai");
 
-        btn_LoginAsOwner.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_LoginAsOwner.setForeground(new java.awt.Color(0, 51, 153));
-        btn_LoginAsOwner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/owner logo.png"))); // NOI18N
-        btn_LoginAsOwner.setText("Pemilik ");
-        btn_LoginAsOwner.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
-        btn_LoginAsOwner.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_LoginAsOwnerActionPerformed(evt);
+        btn_loginOwner.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_loginOwner.setForeground(new java.awt.Color(255, 255, 255));
+        btn_loginOwner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/owner logo.png"))); // NOI18N
+        btn_loginOwner.setText("Pemilik");
+        btn_loginOwner.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 2, true));
+        btn_loginOwner.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_loginOwner.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_loginOwnerMouseClicked(evt);
             }
         });
 
-        btn_LoginAsTeam.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_LoginAsTeam.setForeground(new java.awt.Color(0, 51, 153));
-        btn_LoginAsTeam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/team logo.png"))); // NOI18N
-        btn_LoginAsTeam.setText("Tim");
-        btn_LoginAsTeam.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
-        btn_LoginAsTeam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_LoginAsTeamActionPerformed(evt);
+        btn_loginTeam.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_loginTeam.setForeground(new java.awt.Color(255, 255, 255));
+        btn_loginTeam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/team logo.png"))); // NOI18N
+        btn_loginTeam.setText("Tim");
+        btn_loginTeam.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 2, true));
+        btn_loginTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_loginTeam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_loginTeamMouseClicked(evt);
             }
         });
 
@@ -72,12 +74,6 @@ public class BerandaLoginNew extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(btn_LoginAsOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_LoginAsTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -87,6 +83,12 @@ public class BerandaLoginNew extends javax.swing.JFrame {
                         .addGap(163, 163, 163)
                         .addComponent(jLabel2)))
                 .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_loginOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
+                .addComponent(btn_loginTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +98,9 @@ public class BerandaLoginNew extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_LoginAsTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_LoginAsOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+                    .addComponent(btn_loginOwner)
+                    .addComponent(btn_loginTeam))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,17 +119,17 @@ public class BerandaLoginNew extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_LoginAsOwnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginAsOwnerActionPerformed
+    private void btn_loginOwnerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginOwnerMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
         new LoginOwnerNew().setVisible(true);
-    }//GEN-LAST:event_btn_LoginAsOwnerActionPerformed
+    }//GEN-LAST:event_btn_loginOwnerMouseClicked
 
-    private void btn_LoginAsTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginAsTeamActionPerformed
+    private void btn_loginTeamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginTeamMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
         new LoginTeamNew().setVisible(true);
-    }//GEN-LAST:event_btn_LoginAsTeamActionPerformed
+    }//GEN-LAST:event_btn_loginTeamMouseClicked
 
     /**
      * @param args the command line arguments
@@ -165,8 +167,8 @@ public class BerandaLoginNew extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_LoginAsOwner;
-    private javax.swing.JButton btn_LoginAsTeam;
+    private javax.swing.JLabel btn_loginOwner;
+    private javax.swing.JLabel btn_loginTeam;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

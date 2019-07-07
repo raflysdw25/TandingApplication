@@ -163,6 +163,7 @@ public class VisitTeam extends javax.swing.JFrame {
 
         btn_sparring.setBackground(new java.awt.Color(0, 0, 153));
         btn_sparring.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_sparring.setForeground(new java.awt.Color(255, 255, 255));
         btn_sparring.setText("Ajak TANDING");
         btn_sparring.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_sparring.addActionListener(new java.awt.event.ActionListener() {
