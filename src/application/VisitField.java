@@ -62,7 +62,10 @@ public class VisitField extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
+
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 51));
 
         jDesktopPane1.setLayer(fieldimage, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -84,20 +87,25 @@ public class VisitField extends javax.swing.JFrame {
         );
 
         namaField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        namaField.setForeground(new java.awt.Color(0, 0, 153));
         namaField.setText("Nama Lapangan");
 
         alamatField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alamatField.setForeground(new java.awt.Color(0, 0, 153));
         alamatField.setText("Alamat");
 
         kontakField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        kontakField.setForeground(new java.awt.Color(0, 0, 153));
         kontakField.setText("Kontak");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Fasilitias");
 
         txt_fasilitas.setEditable(false);
         txt_fasilitas.setColumns(20);
         txt_fasilitas.setRows(5);
+        txt_fasilitas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
         jScrollPane1.setViewportView(txt_fasilitas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -140,7 +148,7 @@ public class VisitField extends javax.swing.JFrame {
 
         btn_sewa.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_sewa.setText("Sewa Lapangan");
-        btn_sewa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_sewa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
         btn_sewa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_sewaActionPerformed(evt);
@@ -172,13 +180,14 @@ public class VisitField extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_home, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_home, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btn_sewa, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();

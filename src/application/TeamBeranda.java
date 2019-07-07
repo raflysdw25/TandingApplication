@@ -62,6 +62,7 @@ public class TeamBeranda extends javax.swing.JFrame {
         label_teamPhone = new javax.swing.JLabel();
         label_teamDomisili = new javax.swing.JLabel();
         btn_editProfile = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         pnl_teamSearch = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -77,6 +78,7 @@ public class TeamBeranda extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_fieldSearch = new javax.swing.JTable();
         btn_visitField = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -85,10 +87,18 @@ public class TeamBeranda extends javax.swing.JFrame {
             }
         });
 
-        pnl_teamProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        pnl_teamProfile.setBackground(new java.awt.Color(43, 54, 146));
+        pnl_teamProfile.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 51), 2, true));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setText("TEAM PROFILE");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/team logo.png"))); // NOI18N
+        jLabel1.setText("PROFIL TIM");
+
+        dst_teamPhoto.setBackground(new java.awt.Color(255, 255, 51));
+
+        imageLabel.setBackground(new java.awt.Color(255, 255, 255));
+        imageLabel.setForeground(new java.awt.Color(255, 255, 255));
 
         dst_teamPhoto.setLayer(imageLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -96,7 +106,7 @@ public class TeamBeranda extends javax.swing.JFrame {
         dst_teamPhoto.setLayout(dst_teamPhotoLayout);
         dst_teamPhotoLayout.setHorizontalGroup(
             dst_teamPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+            .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
         );
         dst_teamPhotoLayout.setVerticalGroup(
             dst_teamPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,21 +114,28 @@ public class TeamBeranda extends javax.swing.JFrame {
         );
 
         label_teamName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        label_teamName.setText("Team Name");
+        label_teamName.setForeground(new java.awt.Color(255, 255, 255));
+        label_teamName.setText("Nama Tim");
 
         label_teamPhone.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        label_teamPhone.setText("Contact Number");
+        label_teamPhone.setForeground(new java.awt.Color(255, 255, 255));
+        label_teamPhone.setText("No. Kontak");
 
         label_teamDomisili.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        label_teamDomisili.setForeground(new java.awt.Color(255, 255, 255));
         label_teamDomisili.setText("Domisili");
 
         btn_editProfile.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_editProfile.setText("Edit Profile");
+        btn_editProfile.setForeground(new java.awt.Color(0, 0, 153));
+        btn_editProfile.setText("Ubah Profil");
+        btn_editProfile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
         btn_editProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editProfileActionPerformed(evt);
             }
         });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lazu\\Pictures\\bahan icon\\fbi.png")); // NOI18N
 
         javax.swing.GroupLayout pnl_teamProfileLayout = new javax.swing.GroupLayout(pnl_teamProfile);
         pnl_teamProfile.setLayout(pnl_teamProfileLayout);
@@ -136,12 +153,14 @@ public class TeamBeranda extends javax.swing.JFrame {
                                     .addComponent(label_teamDomisili, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(dst_teamPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(pnl_teamProfileLayout.createSequentialGroup()
-                                .addGap(66, 66, 66)
+                                .addGap(55, 55, 55)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 28, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_teamProfileLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_editProfile)))
+                        .addGap(0, 31, Short.MAX_VALUE))
+                    .addGroup(pnl_teamProfileLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_editProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnl_teamProfileLayout.setVerticalGroup(
@@ -157,12 +176,20 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addComponent(label_teamPhone)
                 .addGap(18, 18, 18)
                 .addComponent(label_teamDomisili)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_editProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(pnl_teamProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(btn_editProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnl_teamSearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        pnl_teamSearch.setBackground(new java.awt.Color(255, 255, 255));
+        pnl_teamSearch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 51), 2, true));
+
+        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 153));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
 
         tb_pertandingan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,17 +208,17 @@ public class TeamBeranda extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Jadwal Pertandingan Team", jPanel3);
@@ -238,7 +265,7 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(txt_teamSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                    .addComponent(txt_teamSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_visitTeam)))
@@ -256,7 +283,7 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Search Team", jPanel1);
+        jTabbedPane1.addTab("Cari Tim", jPanel1);
 
         txt_fieldSearch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txt_fieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -285,7 +312,9 @@ public class TeamBeranda extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tb_fieldSearch);
 
         btn_visitField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_visitField.setText("CHECK FIELD");
+        btn_visitField.setForeground(new java.awt.Color(0, 0, 153));
+        btn_visitField.setText("CEK LAPANGAN");
+        btn_visitField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
         btn_visitField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_visitFieldActionPerformed(evt);
@@ -296,14 +325,14 @@ public class TeamBeranda extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_fieldSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_visitField)))
+                        .addComponent(btn_visitField, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_fieldSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -311,14 +340,16 @@ public class TeamBeranda extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txt_fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_visitField)
-                .addGap(41, 41, 41))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(btn_visitField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
-        jTabbedPane1.addTab("Search Field", jPanel2);
+        jTabbedPane1.addTab("Cari Lapangan", jPanel2);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Lazu\\Pictures\\bahan icon\\search3.png")); // NOI18N
 
         javax.swing.GroupLayout pnl_teamSearchLayout = new javax.swing.GroupLayout(pnl_teamSearch);
         pnl_teamSearch.setLayout(pnl_teamSearchLayout);
@@ -328,13 +359,19 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
+            .addGroup(pnl_teamSearchLayout.createSequentialGroup()
+                .addGap(193, 193, 193)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_teamSearchLayout.setVerticalGroup(
             pnl_teamSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_teamSearchLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_teamSearchLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(7, 7, 7))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -342,18 +379,21 @@ public class TeamBeranda extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(pnl_teamProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(pnl_teamSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(pnl_teamSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnl_teamProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_teamProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnl_teamSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(pnl_teamSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -599,6 +639,8 @@ public class TeamBeranda extends javax.swing.JFrame {
     private javax.swing.JDesktopPane dst_teamPhoto;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

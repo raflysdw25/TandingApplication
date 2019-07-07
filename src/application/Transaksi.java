@@ -97,38 +97,53 @@ public class Transaksi extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 51)));
+        jPanel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Penyewaan");
+        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel1.setText("PENYEWAAN");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("Nama Team");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
         jLabel3.setText("Nama Field");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
         jLabel4.setText("Jenis Lapangan");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("Waktu");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 153));
         jLabel6.setText("Durasi");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 153));
         jLabel7.setText("Tanggal");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Total Bayar");
+        jLabel8.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel8.setText("Total ");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("DP");
+        jLabel9.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel9.setText("Uang Muka");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 153));
         jLabel10.setText("Status Pembayaran");
 
         btn_submit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_submit.setText("SUBMIT");
+        btn_submit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
         btn_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_submitActionPerformed(evt);
@@ -137,6 +152,7 @@ public class Transaksi extends javax.swing.JFrame {
 
         btn_cancel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btn_cancel.setText("BATAL");
+        btn_cancel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
         btn_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelActionPerformed(evt);
@@ -145,24 +161,31 @@ public class Transaksi extends javax.swing.JFrame {
 
         txt_teamName.setEditable(false);
         txt_teamName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_teamName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
 
         txt_fieldName.setEditable(false);
         txt_fieldName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_fieldName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
 
         list_lapangan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         list_lapangan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sintetis", "Semen", "Vinyl", "Paquet" }));
+        list_lapangan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
         list_lapangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 list_lapanganActionPerformed(evt);
             }
         });
 
+        tgl_penyewaan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
+
         JSpinner.DateEditor te = new JSpinner.DateEditor(time_spinner,"HH:mm");
         time_spinner.setEditor(te);
         time_spinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        time_spinner.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
 
         durasi_spinner.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         durasi_spinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        durasi_spinner.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
         durasi_spinner.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 durasi_spinnerStateChanged(evt);
@@ -171,8 +194,10 @@ public class Transaksi extends javax.swing.JFrame {
 
         txt_total.setEditable(false);
         txt_total.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_total.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
 
         txt_dp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_dp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 153)));
         txt_dp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_dpKeyReleased(evt);
@@ -270,7 +295,7 @@ public class Transaksi extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
