@@ -155,6 +155,7 @@ public class LoginOwnerNew extends javax.swing.JFrame {
                 OwnerBeranda owner = new OwnerBeranda(id_owner);
                 JOptionPane.showMessageDialog(null, "Login Successful");
                 owner.setVisible(true);
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Username dan Password Salah");
             }

@@ -37,6 +37,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
         conn = DatabaseTanding.getConnection();
         id_owner = id;
         readDataTable();
+        btn_updateStatus.setVisible(false);
     }
 
     /**
@@ -61,6 +62,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
         btn_updateStatus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -157,35 +159,29 @@ public class OwnerBeranda extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(order_table);
 
-        btn_updateStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btn_updateStatus.setText("UPDATE STATUS PEMBAYARAN");
-        btn_updateStatus.setEnabled(false);
-        btn_updateStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_updateStatusActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_updateStatus, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(btn_updateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154))
+                .addGap(0, 4, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        btn_updateStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btn_updateStatus.setText("UPDATE STATUS PEMBAYARAN");
+        btn_updateStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -193,12 +189,16 @@ public class OwnerBeranda extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(182, 182, 182))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(182, 182, 182))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_updateStatus)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,8 +206,10 @@ public class OwnerBeranda extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_updateStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,17 +219,18 @@ public class OwnerBeranda extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -271,9 +274,17 @@ public class OwnerBeranda extends javax.swing.JFrame {
         // TODO add your handling code here:
          int row = order_table.getSelectedRow();
         String idteamClickTable = (order_table.getModel().getValueAt(row,0).toString());
+        String jenisLapClickTable = (order_table.getModel().getValueAt(row,2).toString());
+        String waktuClickTable = (order_table.getModel().getValueAt(row,3).toString());
+        String durasiClickTable = (order_table.getModel().getValueAt(row,4).toString());
+        String tanggalClickTable = (order_table.getModel().getValueAt(row,5).toString());
+        String statusClickTable = (order_table.getModel().getValueAt(row,6).toString());
         
         try{
-            String sql = "select * from transaksi_lapangan where id_team = '"+idteamClickTable+"' ";
+            String sql = "select * from transaksi_lapangan where id_team = '"+idteamClickTable+"'"
+                    + "AND jenis_lapangan = '"+jenisLapClickTable+"' AND waktu = '"+waktuClickTable+"'"
+                    + "AND durasi = '"+durasiClickTable+"' AND tanggal_sewa = '"+tanggalClickTable+"'"
+                    + "AND status = '"+statusClickTable+"' ";
             pst = conn.prepareStatement(sql);            
             rs = pst.executeQuery();
                        
@@ -283,6 +294,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
                 tgl_sewa = rs.getString("tanggal_sewa");
                 waktu = rs.getString("waktu");
                 status = rs.getString("status");                
+                btn_updateStatus.setVisible(true);
             }
                     
         }catch(Exception e){
@@ -303,7 +315,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Pembayaran lapangan telah lunas");
         }else{
             try {
-                String sql = "UPDATE transaksi_lapangan SET status = ? WHERE id_field = '"+id_owner+"' "
+                String sql = "UPDATE transaksi_lapangan SET status = ? WHERE id_owner = '"+id_owner+"' "
                         + "AND id_team = '"+id_team+"' AND tanggal_sewa = '"+tgl_sewa+"' AND waktu = '"+waktu+"'";
                 pst = conn.prepareStatement(sql);
                 pst.setString(1, "Lunas");
@@ -312,6 +324,7 @@ public class OwnerBeranda extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Update Telah Dilakukan");
                 readDataTable();
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Button Error : "+e.getMessage());
             }
         }
     }//GEN-LAST:event_btn_updateStatusActionPerformed
