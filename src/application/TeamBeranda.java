@@ -63,12 +63,12 @@ public class TeamBeranda extends javax.swing.JFrame {
         label_teamDomisili = new javax.swing.JLabel();
         btn_editProfile = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        btn_logout = new javax.swing.JLabel();
         pnl_teamSearch = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tb_pertandingan = new javax.swing.JTable();
+        btn_logout = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txt_teamSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -136,16 +136,6 @@ public class TeamBeranda extends javax.swing.JFrame {
             }
         });
 
-        btn_logout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btn_logout.setForeground(new java.awt.Color(255, 255, 255));
-        btn_logout.setText("LOG OUT");
-        btn_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_logoutMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout pnl_teamProfileLayout = new javax.swing.GroupLayout(pnl_teamProfile);
         pnl_teamProfile.setLayout(pnl_teamProfileLayout);
         pnl_teamProfileLayout.setHorizontalGroup(
@@ -160,8 +150,7 @@ public class TeamBeranda extends javax.swing.JFrame {
                                     .addComponent(label_teamName, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label_teamPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label_teamDomisili, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dst_teamPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_logout)))
+                                    .addComponent(dst_teamPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(pnl_teamProfileLayout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addComponent(jLabel1)))
@@ -189,9 +178,7 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnl_teamProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addGroup(pnl_teamProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_editProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_logout)))
+                    .addComponent(btn_editProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -216,6 +203,16 @@ public class TeamBeranda extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tb_pertandingan);
 
+        btn_logout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btn_logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sign out.png"))); // NOI18N
+        btn_logout.setText("LOG OUT");
+        btn_logout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_logoutMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -224,13 +221,19 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_logout)
+                .addGap(20, 20, 20))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_logout)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Jadwal Pertandingan Team", jPanel3);
@@ -292,7 +295,7 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_visitTeam)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cari Tim", jPanel1);
@@ -354,7 +357,7 @@ public class TeamBeranda extends javax.swing.JFrame {
                 .addComponent(txt_fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(btn_visitField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );

@@ -312,7 +312,7 @@ public class FormPertandingan extends javax.swing.JFrame {
             
             pst.execute();
             JOptionPane.showMessageDialog(null, "Data Saved Successful");
-            new TeamBeranda().setVisible(true);
+            new TeamBeranda(idTeam1).setVisible(true);
             this.dispose();
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex);
